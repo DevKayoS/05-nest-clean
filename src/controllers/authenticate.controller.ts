@@ -1,8 +1,6 @@
-import { BadRequestException, Body, Controller, HttpCode, NotFoundException, Post, UnauthorizedException, UsePipes } from "@nestjs/common";
+import {  Body, Controller, HttpCode, Post, UnauthorizedException, UsePipes } from "@nestjs/common";
 import { JwtService } from "@nestjs/jwt";
 import { compare } from "bcryptjs";
-import { verify } from "crypto";
-import { NotFoundError } from "rxjs";
 import { ZodValidationPipe } from "src/pipes/zod-validation-pipe";
 import { PrismaService } from "src/prisma/prisma.service";
 import { z } from "zod";
