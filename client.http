@@ -29,6 +29,6 @@ Content-Type: application/json
 Authorization: Bearer {{authToken}}
 
 {
-   "title": "Como usar linux?",
-   "content": "Iniciei hoje a usar arch linux mas sou muito incapaz"
+   "title": "tomara que de",
+   "content": "testando codigo"
 }

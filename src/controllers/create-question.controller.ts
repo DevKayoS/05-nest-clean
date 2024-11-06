@@ -14,6 +14,8 @@ const createQuestionBodySchema = z.object({
 
 type CreateQuestionBodySchema = z.infer<typeof createQuestionBodySchema>
 
+const createQuestionBodyValidation = new ZodValidationPipe(createQuestionBodySchema)
+
 @Controller('/questions')
 @UseGuards(JwtAuthGuard) // fazendo com que a rota precise de autentificacao para ser chamada
 export class CreateQuestionController {
@@ -21,17 +23,11 @@ export class CreateQuestionController {
     
     @Post()
     @HttpCode(201)
-    @UsePipes(new ZodValidationPipe(createQuestionBodySchema)) 
     async handle(
-        @Body() body: CreateQuestionBodySchema,
+        @Body(createQuestionBodyValidation) body: CreateQuestionBodySchema,
         @CurrentUser() user: UserPayload)
         {
         const { title, content } = body
-
-
-        console.log('oi')
-        console.log(title, content)
-
         
         await this.prisma.question.create({
             data: {
