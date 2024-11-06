@@ -1,9 +1,9 @@
 import {  Body, Controller, HttpCode, HttpStatus, Post, UseGuards, UsePipes } from "@nestjs/common";
-import { CurrentUser } from "src/auth/current-user-decorator";
-import { JwtAuthGuard } from "src/auth/jwt-auth.guard";
-import { UserPayload } from "src/auth/jwt.strategy";
-import { ZodValidationPipe } from "src/pipes/zod-validation-pipe";
-import { PrismaService } from "src/prisma/prisma.service";
+import { CurrentUser } from "@/auth/current-user-decorator";
+import { JwtAuthGuard } from "@/auth/jwt-auth.guard";
+import { UserPayload } from "@/auth/jwt.strategy";
+import { ZodValidationPipe } from "@/pipes/zod-validation-pipe";
+import { PrismaService } from "@/prisma/prisma.service";
 import { z } from "zod";
 
 
@@ -14,6 +14,8 @@ const createQuestionBodySchema = z.object({
 
 type CreateQuestionBodySchema = z.infer<typeof createQuestionBodySchema>
 
+const createQuestionBodyValidation = new ZodValidationPipe(createQuestionBodySchema)
+
 @Controller('/questions')
 @UseGuards(JwtAuthGuard) // fazendo com que a rota precise de autentificacao para ser chamada
 export class CreateQuestionController {
@@ -21,17 +23,11 @@ export class CreateQuestionController {
     
     @Post()
     @HttpCode(201)
-    @UsePipes(new ZodValidationPipe(createQuestionBodySchema)) 
     async handle(
-        @Body() body: CreateQuestionBodySchema,
+        @Body(createQuestionBodyValidation) body: CreateQuestionBodySchema,
         @CurrentUser() user: UserPayload)
         {
         const { title, content } = body
-
-
-        console.log('oi')
-        console.log(title, content)
-
         
         await this.prisma.question.create({
             data: {
