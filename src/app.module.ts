@@ -6,6 +6,7 @@ import { envSchema } from './env';
 import { AuthModule } from './auth/auth.module';
 import { AuthenticateConroller } from './controllers/authenticate.controller';
 import { CreateQuestionController } from './controllers/create-question.controller';
+import { FetchRecentQuestionsController } from './controllers/fetch-recent-questions.controller';
 
 @Module({
   imports: [ConfigModule.forRoot({
@@ -14,7 +15,12 @@ import { CreateQuestionController } from './controllers/create-question.controll
   }), 
   AuthModule
 ],
-  controllers: [CreateAccountController, AuthenticateConroller, CreateQuestionController],
+  controllers: [
+    CreateAccountController,
+    AuthenticateConroller,
+    CreateQuestionController,
+    FetchRecentQuestionsController
+  ],
   providers: [ PrismaService],
 })
 export class AppModule {}

@@ -32,3 +32,13 @@ Authorization: Bearer {{authToken}}
    "title": "tomara que de",
    "content": "testando codigo"
 }
+
+###
+# @name fetch_recent_question
+GET {{baseurl}}/questions?page=1
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
+
+{
+   
+}
