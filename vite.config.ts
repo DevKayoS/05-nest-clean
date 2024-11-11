@@ -11,7 +11,8 @@ export default defineConfig({
   plugins: [
     tsConfigPaths(),
     swc.vite({
-      module: { type: 'commonjs' },
+      module: { type: 'es6' },
     }),
   ],
+  
 });
