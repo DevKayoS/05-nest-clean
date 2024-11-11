@@ -11,6 +11,6 @@ services:
       POSTGRES_PASSWORD: docker
       POSTGRES_DB: nest-clean
       PGDATA: /data/postgres
-    volumes:
-    #tudo criado dentro dessa pasta vai ser como backup para caso do container morrer
-      - ./data/pg:/data/postgres
+    # volumes:
+    # #tudo criado dentro dessa pasta vai ser como backup para caso do container morrer
+    #   - ./data/pg:/data/postgres
