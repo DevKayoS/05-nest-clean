@@ -19,7 +19,7 @@ Content-Type: application/json
 
 {
    "email": "kayo@teste.com",
-   "password": "123456"
+   "password": "teste123"
 }
 
 ###
@@ -29,8 +29,8 @@ Content-Type: application/json
 Authorization: Bearer {{authToken}}
 
 {
-   "title": "tomara que de",
-   "content": "testando codigo"
+   "title": "testando",
+   "content": "eita gloria cara"
 }
 
 ###
