@@ -13,7 +13,7 @@ import { FetchRecentQuestionsController } from './controllers/fetch-recent-quest
     validate: env => envSchema.parse(env),
     isGlobal: true
   }), 
-  AuthModule
+  AuthModule,
 ],
   controllers: [
     CreateAccountController,
@@ -21,6 +21,6 @@ import { FetchRecentQuestionsController } from './controllers/fetch-recent-quest
     CreateQuestionController,
     FetchRecentQuestionsController
   ],
-  providers: [ PrismaService],
+  providers: [PrismaService],
 })
 export class AppModule {}
