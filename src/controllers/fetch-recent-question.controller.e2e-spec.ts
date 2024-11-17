@@ -71,7 +71,8 @@ describe('Fetch recent question (E2E)', ()=> {
         expect(response.body).toEqual({
             questions: [
                 expect.objectContaining({ title: 'question 01' }),
-                expect.objectContaining({ title: 'question 02' })
+                expect.objectContaining({ title: 'question 02' }),
+                expect.objectContaining({ title: 'question 03' })
             ]
         })
         expect(response.body.questions).toHaveLength(3)
