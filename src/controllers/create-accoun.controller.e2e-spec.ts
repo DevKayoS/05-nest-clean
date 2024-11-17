@@ -1,42 +1,40 @@
-import { AppModule } from "src/app.module";
-import { INestApplication } from "@nestjs/common";
-import {Test} from '@nestjs/testing'
+import { AppModule } from 'src/app.module'
+import { INestApplication } from '@nestjs/common'
+import { Test } from '@nestjs/testing'
 import request from 'supertest'
-import { PrismaService } from "../prisma/prisma.service";
+import { PrismaService } from '../prisma/prisma.service'
 
-describe('Create account (E2E)', ()=> {
+describe('Create account (E2E)', () => {
+  let app: INestApplication
+  let prisma: PrismaService
 
-    let app: INestApplication
-    let prisma: PrismaService
+  beforeAll(async () => {
+    const moduleRef = await Test.createTestingModule({
+      imports: [AppModule],
+    }).compile()
 
-    beforeAll(async () => {
-        const moduleRef = await Test.createTestingModule({
-        imports: [AppModule],
-        }).compile();
+    app = moduleRef.createNestApplication()
 
-        app = moduleRef.createNestApplication();
+    prisma = moduleRef.get(PrismaService)
 
-        prisma = moduleRef.get(PrismaService)
+    await app.init()
+  })
 
-        await app.init();
-    });
-
-
-    test('[POST]/accounts', async()=> {
-        const response = await request(app.getHttpServer()).post('/accounts').send({
-            name: 'John Doe',
-            email: 'johndoe@example.com',
-            password: 'teste123'
-        })
-
-        expect(response.statusCode).toBe(201)
-
-        const userOnDatabase = await prisma.user.findUnique({
-            where:{
-                email: 'johndoe@example.com'
-            }
-        })
-
-        expect(userOnDatabase).toBeTruthy()
+  test('[POST]/accounts', async () => {
+    const response = await request(app.getHttpServer()).post('/accounts').send({
+      name: 'John Doe',
+      email: 'johndoe@example.com',
+      password: 'teste123',
     })
+
+    expect(response.statusCode).toBe(201)
+
+    const userOnDatabase = await prisma.user.findUnique({
+      where: {
+        email: 'johndoe@example.com',
+      },
+    })
+
+    expect(userOnDatabase).toBeTruthy()
+  })
 })
