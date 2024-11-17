@@ -1,10 +1,10 @@
-import { AppModule } from 'src/app.module'
 import { INestApplication } from '@nestjs/common'
 import { Test } from '@nestjs/testing'
 import request from 'supertest'
-import { PrismaService } from '../prisma/prisma.service'
+import { PrismaService } from '../../prisma/prisma.service'
 import { JwtService } from '@nestjs/jwt'
 import { resolve } from 'path'
+import { AppModule } from '../../app.module'
 
 describe('Fetch recent question (E2E)', () => {
   let app: INestApplication

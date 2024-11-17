@@ -23,7 +23,7 @@ let inMemoryNotificationsRepository: InMemoryNotificationsRepository
 let sendNotificationExecuteSpy: SpyInstance<
   [SendNotificationUseCaseRequest],
   Promise<SendNotificationUseCaseResponse>
->;
+>
 
 describe('On Question Best Answer Chosen Created', () => {
   beforeEach(() => {
@@ -43,7 +43,6 @@ describe('On Question Best Answer Chosen Created', () => {
     )
 
     sendNotificationExecuteSpy = vi.spyOn(sendNotificationUseCase, 'execute')
-    
 
     new OnQuestionBestANswerChosen(
       inMemoryAnswerRepository,

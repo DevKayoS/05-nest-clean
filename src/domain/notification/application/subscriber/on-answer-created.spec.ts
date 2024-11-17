@@ -21,8 +21,10 @@ let inMemoryAnswerAttachmentRepository: InMemoryAnswerAttachmentsRepository
 let inMemoryNotificationsRepository: InMemoryNotificationsRepository
 
 let sendNotificationExecuteSpy: MockInstance<
-(args: SendNotificationUseCaseRequest) => Promise<SendNotificationUseCaseResponse>
->;
+  (
+    args: SendNotificationUseCaseRequest,
+  ) => Promise<SendNotificationUseCaseResponse>
+>
 
 describe('On Answer Created', () => {
   beforeEach(() => {
