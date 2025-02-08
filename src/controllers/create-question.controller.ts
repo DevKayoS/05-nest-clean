@@ -1,5 +1,5 @@
 import { Body, Controller, HttpCode, Post, UseGuards } from '@nestjs/common'
-import { PrismaService } from '../infra/prisma/prisma.service'
+import { PrismaService } from '../infra/database/prisma/prisma.service'
 import { z } from 'zod'
 import { CurrentUser } from 'src/infra/auth/current-user-decorator'
 import { JwtAuthGuard } from 'src/infra/auth/jwt-auth.guard'
