@@ -1,10 +1,10 @@
 import { Body, Controller, HttpCode, Post, UseGuards } from '@nestjs/common'
-import { CurrentUser } from 'src/auth/current-user-decorator'
-import { JwtAuthGuard } from '../auth/jwt-auth.guard'
-import { UserPayload } from '../auth/jwt.strategy'
-import { ZodValidationPipe } from '../infra/http/pipes/zod-validation-pipe'
 import { PrismaService } from '../infra/prisma/prisma.service'
 import { z } from 'zod'
+import { CurrentUser } from 'src/infra/auth/current-user-decorator'
+import { JwtAuthGuard } from 'src/infra/auth/jwt-auth.guard'
+import { UserPayload } from 'src/infra/auth/jwt.strategy'
+import { ZodValidationPipe } from 'src/infra/http/pipes/zod-validation-pipe'
 
 const createQuestionBodySchema = z.object({
   title: z.string(),
